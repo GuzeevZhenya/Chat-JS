@@ -5,6 +5,7 @@ const chat = () => {
   let username = document.querySelector('#username');
   let send_message = document.querySelector('#send_message');
   let send_username = document.querySelector('#send_username');
+  let feedback = document.getElementById('feedback');
   let chatroom = document.querySelector('#chatroom');
 
   let min = 1;
@@ -58,9 +59,13 @@ const chat = () => {
     socket.emit('change_username', { username: username.value });
   });
 
-  message.addEventListener('keypress', () => {
+  message.addEventListener('keyup', () => {
     socket.emit('typing');
   });
+
+  socket.on('typing', () => {
+      feedback.innerHTML = '<p><em>'+ ' is typing...</em></p>';
+  })
 };
 
 chat();
