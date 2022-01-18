@@ -59,13 +59,6 @@ const chat = () => {
     socket.emit('change_username', { username: username.value });
   });
 
-  message.addEventListener('keyup', () => {
-    socket.emit('typing');
-  });
-
-  socket.on('typing', () => {
-      feedback.innerHTML = '<p><em>'+ ' is typing...</em></p>';
-  })
 };
 
 chat();
